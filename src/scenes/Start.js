@@ -31,8 +31,8 @@ export class Start extends Phaser.Scene {
     this.background = this.add.tileSprite(
       400, // x
       300, // y
-      800, // width (게임 해상도에 맞게)
-      600, // height
+      1920, // width (게임 해상도에 맞게)
+      720, // height
       "background"
     );
 
@@ -61,25 +61,19 @@ export class Start extends Phaser.Scene {
 
     // 시작 안내 텍스트
     this.add
-      .text(400, 500, "Press SPACE to Start", {
+      .text(400, 300, "Press SPACE to Start", {
         fontSize: "32px",
         color: "#fff",
       })
       .setOrigin(0.5);
 
-    // 스페이스 키 입력 등록
-    this.spaceKey = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.SPACE
-    );
+    this.input.keyboard.once("keydown-SPACE", () => {
+      this.scene.start("Game");
+    });
   }
 
   update() {
     // 배경 스크롤
     this.background.tilePositionX += 2;
-
-    // 스페이스 눌렀을 때 다음 씬으로
-    if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
-      this.scene.start("Game");
-    }
   }
 }
