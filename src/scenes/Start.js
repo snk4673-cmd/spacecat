@@ -31,8 +31,8 @@ export class Start extends Phaser.Scene {
     this.background = this.add.tileSprite(
       400, // x
       300, // y
-      1920, // width (게임 해상도에 맞게)
-      720, // height
+      800, // width (게임 해상도에 맞게)
+      600, // height
       "background"
     );
 

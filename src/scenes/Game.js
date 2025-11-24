@@ -19,19 +19,31 @@ export class Game extends Phaser.Scene {
       "background"
     );
     this.user = this.add.image(400, 350, "user");
+    this.user.flipX = true;
 
-    this.tweens.add({
-      targets: this.user,
-      y: 400,
-      duration: 1500,
-      ease: "Sine.inOut",
-      yoyo: true,
-      loop: -1,
-    });
+    this.upkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.downKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.leftkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.rightKey = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.D
+    );
   }
 
   update() {
     // 배경 스크롤
     this.background.tilePositionX += 2;
+
+    if (this.upkey.isDown) {
+      this.user.y -= 3;
+    }
+    if (this.downKey.isDown) {
+      this.user.y += 3;
+    }
+    if (this.leftkey.isDown) {
+      this.user.x -= 3;
+    }
+    if (this.rightKey.isDown) {
+      this.user.x += 3;
+    }
   }
 }
